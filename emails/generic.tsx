@@ -1,7 +1,7 @@
 import { Layout } from "./components/layout";
 import { Button, Hr, Link, Text } from "@react-email/components";
 
-import { baseUrl } from './config';
+import { baseUrl } from "./config";
 
 export const GenericTemplate = () => (
   <Layout>
@@ -14,8 +14,8 @@ export const GenericTemplate = () => (
         You can view your payments and a variety of other information about your
         account right from your dashboard.
       </Text>
-      <Button pX={10} pY={10} className="bg-purple-500 text-white block rounded text-center" href="https://dashboard.stripe.com/login">
-        View your Stripe Dashboard
+      <Button className="btn btn-primary mx-auto" href={`${baseUrl}/login`}>
+        Click on the button
       </Button>
       <Hr />
       <Text>

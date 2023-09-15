@@ -1,0 +1,46 @@
+import { type InputHTMLAttributes, forwardRef } from "react";
+
+type Option = {
+  label?: string;
+  value: string;
+};
+
+export interface InputProps extends InputHTMLAttributes<HTMLSelectElement> {
+  label?: string;
+  isLoading?: boolean;
+  error?: string;
+  leftAccessory?: React.ReactElement;
+  rightAccessory?: React.ReactElement;
+  options?: Option[];
+}
+
+const TextInput = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      label,
+      name,
+      error,
+      leftAccessory,
+      rightAccessory,
+      options = [],
+      ...props
+    }: InputProps,
+    ref,
+  ) => (
+    <div className="form-control w-full max-w-xs">
+      <label className="label">
+        {label && <span className="label-text">{label}</span>}
+        {/* <span className="label-text-alt">Top Right label</span> */}
+      </label>
+      <select className="select select-bordered w-full max-w-xs" {...props}>
+        {options.map((option) => (
+          <option selected key={option.value} value={option.value}>
+            {option.label ?? option.value}
+          </option>
+        ))}
+      </select>
+    </div>
+  ),
+);
+TextInput.displayName = "TextInput";
+export default TextInput;

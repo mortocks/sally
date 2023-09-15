@@ -12,9 +12,13 @@
       "editor.formatOnSave": true
     },
     "cSpell.words": [
+      "daisyui",
+      "hookform",
+      "testid"
     ],
     "files.exclude": {
-      "**/node_modules": true
+      "**/node_modules": true,
+      ".react-email": true
     },
     "vitest.exclude": [
         "<node_internals>/**",
