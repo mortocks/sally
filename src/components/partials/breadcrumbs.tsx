@@ -32,7 +32,11 @@ const Breadcrumbs = ({ crumbs = [] }: Props) => (
       </li>
       {crumbs.map(({ label, href }) => (
         <li key={label}>
-          {href ? <Link href={href}>{label}</Link> : <span>{label}</span>}
+          {href ? (
+            <Link href={href}>{label}</Link>
+          ) : (
+            <span className="opacity-50">{label}</span>
+          )}
         </li>
       ))}
     </ul>

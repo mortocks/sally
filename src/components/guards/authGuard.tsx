@@ -6,7 +6,11 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const { status } = useSession();
 
   if (status === "loading") {
-    return <span className="loading loading-spinner loading-lg"></span>;
+    return (
+      <div className="flex h-screen w-full items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   } else if (status === "unauthenticated") {
     // eslint-disable-next-line
     router.push("/auth/sign-in");

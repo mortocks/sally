@@ -1,30 +1,25 @@
-import { useForm } from "react-hook-form";
+import { useForm, type DeepPartial } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-const schema = z.object({
-  firstName: z.string().min(1, { message: "First name is required" }),
-  lastName: z.string().min(1, { message: "Last name is required" }),
+export const profileSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
   email: z.string().email(),
-  role: z.enum(["admin", "user"]),
-  isActive: z.boolean(),
+  //role: z.enum(["admin", "user"]),
+  //isActive: z.boolean(),
 });
 
-export type ProfileSchema = z.infer<typeof schema>;
+export type ProfileSchema = z.infer<typeof profileSchema>;
 
 type UseProfileProps = {
-  defaultValues?: Partial<z.infer<typeof schema>>;
+  defaultValues?: DeepPartial<z.infer<typeof profileSchema>>;
 };
 
 const useProfileForm = (props?: UseProfileProps) => {
-  const { defaultValues } = props ?? {};
   return useForm({
-    resolver: zodResolver(schema),
-    defaultValues,
+    resolver: zodResolver(profileSchema),
     mode: "onChange",
   });
 };
 
 export default useProfileForm;
-
-export { schema };

@@ -10,7 +10,7 @@ export default function SignIn({
   providers,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <div className="container flex h-full grow flex-col items-center justify-center">
+    <div className="container flex h-screen grow flex-col items-center justify-center">
       <div className="mx-auto w-full max-w-md">
         <h2 className="mb-8 text-3xl">Welcome to Sally</h2>
         <h1 className="mb-8 text-4xl">Sign in</h1>

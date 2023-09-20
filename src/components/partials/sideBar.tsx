@@ -1,11 +1,11 @@
 import Link from "next/link";
 const SideBar = () => (
-  <div className="drawer-side ">
+  <div className="drawer-side shadow-xl">
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-    <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 pt-24">
+    <ul className="menu text-base-content min-h-full w-80 bg-white p-4 pt-24">
       {/* Sidebar content here */}
       <li>
-        <Link href="/">
+        <Link href="/" className="py-4">
           <svg
             width="24"
             height="24"
@@ -24,7 +24,7 @@ const SideBar = () => (
         </Link>
       </li>
       <li>
-        <Link href="/projects">
+        <Link href="/projects" className="py-4">
           <svg
             width="24"
             height="24"
@@ -43,7 +43,7 @@ const SideBar = () => (
         </Link>
       </li>
       <li>
-        <Link href="/clients">
+        <Link href="/clients" className="py-4">
           <svg
             width="24"
             height="24"
@@ -68,7 +68,7 @@ const SideBar = () => (
         </Link>
       </li>
       <li className="mt-auto">
-        <Link href="/settings">
+        <Link href="/settings" className="py-4">
           <svg
             width="24"
             height="24"

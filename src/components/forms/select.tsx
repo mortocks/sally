@@ -1,4 +1,6 @@
 import { type InputHTMLAttributes, forwardRef } from "react";
+import Error from "./error";
+import { placeholder } from "drizzle-orm";
 
 type Option = {
   label?: string;
@@ -12,35 +14,33 @@ export interface InputProps extends InputHTMLAttributes<HTMLSelectElement> {
   leftAccessory?: React.ReactElement;
   rightAccessory?: React.ReactElement;
   options?: Option[];
+  nullLabel?: string;
+  placeholder?: string;
 }
 
-const TextInput = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      label,
-      name,
-      error,
-      leftAccessory,
-      rightAccessory,
-      options = [],
-      ...props
-    }: InputProps,
-    ref,
-  ) => (
+const Select = forwardRef<HTMLSelectElement, InputProps>(
+  ({ label, error, placeholder, options = [], ...props }: InputProps, ref) => (
     <div className="form-control w-full max-w-xs">
       <label className="label">
         {label && <span className="label-text">{label}</span>}
         {/* <span className="label-text-alt">Top Right label</span> */}
       </label>
-      <select className="select select-bordered w-full max-w-xs" {...props}>
+      <select
+        className="select select-bordered mb-2 w-full
+      max-w-xs"
+        {...props}
+        ref={ref}
+      >
+        {placeholder && <option disabled>{placeholder}</option>}
         {options.map((option) => (
-          <option selected key={option.value} value={option.value}>
+          <option key={option.value} value={option.value}>
             {option.label ?? option.value}
           </option>
         ))}
       </select>
+      <Error message={error} />
     </div>
   ),
 );
-TextInput.displayName = "TextInput";
-export default TextInput;
+Select.displayName = "Select";
+export default Select;

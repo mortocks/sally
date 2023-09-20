@@ -1,18 +1,13 @@
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 const NavBar = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="navbar bg-base-300 fixed z-50">
+    <div className="navbar fixed z-50 border-b bg-white">
       <div className="flex-1">
-        <label
-          htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
-        >
-          Open
-        </label>
         <Link href="/" className="btn btn-link text-xl normal-case">
           <svg
             width="48"
@@ -43,25 +38,65 @@ const NavBar = () => {
             </defs>
           </svg>
         </Link>
+        {/* <label
+          htmlFor="my-drawer-2"
+          className="btn btn-primary drawer-button lg:hidden"
+        >
+          Menu
+        </label> */}
+        <label
+          className="btn btn-circle swap drawer-button swap-rotate lg:hidden"
+          htmlFor="my-drawer-2"
+        >
+          {/* this hidden checkbox controls the state */}
+          <input type="checkbox" />
+
+          {/* hamburger icon */}
+          <svg
+            className="swap-off fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512"
+          >
+            <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+          </svg>
+
+          {/* close icon */}
+          <svg
+            className="swap-on fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512"
+          >
+            <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+          </svg>
+        </label>
       </div>
-      <div className="flex-none ">
+      <div className="flex-none">
         <div className="form-control px-4">
           <input
             type="text"
             placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
+            className="md:max-w-24 input input-bordered w-full grow"
           />
         </div>
         {session && (
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
               <div className="w-10 rounded-full">
-                <img src={session.user.image} />
+                <Image
+                  src={session.user.image}
+                  width={40}
+                  height={40}
+                  alt="User profile"
+                />
               </div>
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-white p-2 shadow"
             >
               <li>
                 <Link href="/profile" className="justify-between p-4">

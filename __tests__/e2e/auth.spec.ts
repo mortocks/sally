@@ -1,31 +1,13 @@
 import { test, expect } from '@playwright/test';
+import { userAuthFile } from './config';
 
-test('User can login and logout', async ({ browser }) => {
-    const page = await browser.newPage({ storageState: undefined });
+test.use({ storageState: userAuthFile });
 
-    await page.goto('http://localhost:3000');
+test('User can login and logout', async ({ page }) => {
 
-    // Navigate to the login pages 
-    await page.getByRole('button', { name: 'Sign In' }).click();
-
-    // Auth page
+    await page.goto('http://localhost:3000/');
+    await page.getByRole('img', { name: 'User profile' }).click();
+    await page.getByRole('button', { name: 'Logout' }).click();
     await expect(page.getByText('Sign in with Google')).toBeVisible()
-    await page.getByText('Sign in with Google').click();
-
-    // Google auth
-    await page.getByLabel('Email or phone').click();
-    await page.getByLabel('Email or phone').fill(process.env.USERNAME ?? '');
-    await page.getByRole('button', { name: 'Next' }).click();
-    await page.getByLabel('Enter your password').click();
-    await page.getByLabel('Enter your password').fill(process.env.PASSWORD ?? '');
-    await page.getByRole('button', { name: 'Next' }).click();
-
-    // Return
-    await page.waitForURL('http://localhost:3000');
-    await expect(page.getByTestId('logged-in-as')).toBeVisible();
-
-    await page.getByRole('button', { name: 'Sign out' }).click();
-    await expect(page.getByRole('button', { name: 'Sign In' })).toBeVisible();
-
 });
 
