@@ -12,9 +12,13 @@
       "editor.formatOnSave": true
     },
     "cSpell.words": [
+      "autoincrement",
       "daisyui",
+      "headlessui",
       "hookform",
-      "testid"
+      "testid",
+      "trpc",
+      "uploadthing"
     ],
     "files.exclude": {
       "**/node_modules": true,

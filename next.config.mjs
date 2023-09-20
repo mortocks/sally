@@ -8,6 +8,10 @@ await import("./src/env.mjs");
 const config = {
   reactStrictMode: true,
 
+  images: {
+    domains: ["lh3.googleusercontent.com", "utfs.io"],
+  },
+
   /**
    * If you are using `appDir` then you must comment the below `i18n` config out.
    *
