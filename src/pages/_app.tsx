@@ -32,7 +32,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <SessionProvider session={session}>
         <Component {...pageProps} />
       </SessionProvider>
-      <ToastContainer hideProgressBar />
+      <ToastContainer hideProgressBar autoClose={false} />
     </div>
   );
 };
